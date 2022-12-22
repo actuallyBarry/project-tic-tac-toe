@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: black;
     display: flex;
@@ -33,7 +39,16 @@ body {
     background-color: #ccc;
     height: 3rem;
     width: 8rem;
-    text-align: center;
-    line-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     margin-bottom: 7px;
+}
+
+.myTurn {
+    border-bottom: 5px solid rgb(229, 252, 127);
+}
+
+#announcement {
+    color: #ccc;
 }

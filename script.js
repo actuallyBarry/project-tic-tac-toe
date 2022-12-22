@@ -1,19 +1,33 @@
 // const Gameboard = (() => {
     let boardArr = ['', '', '', '', '', '', '', '', ''];
-    let osTurn = false;  // Boolean(Math.floor(Math.random()*2));
+    let osGame = false;
+    let osTurn = false;
+    let scoreX = 0;
+    let scoreO = 0;
 
     // cache DOM
     const $squares = document.querySelectorAll('.square');
     const $resetBtn = document.querySelector('button');
+    const $playerX = document.querySelector('.x');
+    const $playerO = document.querySelector('.o');
+    const $scoreX = document.querySelector('.x .score');
+    const $scoreO = document.querySelector('.o .score');
+    const $announcement = document.querySelector('#announcement');
 
     // event handlers
     $squares.forEach(sq => sq.addEventListener('click', (e) => getSqIndex(e)))
-    $resetBtn.addEventListener('click', resetBoard)
+    $resetBtn.addEventListener('click', resetGame)
 
-    // methods
-    function resetBoard() {
-        boardArr = ['', '', '', '', '', '', '', '', ''];
+    /* ============================ METHODS ============================ */
+    function resetGame() {
+        $announcement.textContent = '';
+        scoreX = 0;
+        scoreO = 0;
+        updateScores();
+        osGame = true;
+        resetBoard();
         render();
+        displayTurn();
     }
 
     function getSqIndex(e) {
@@ -36,6 +50,7 @@
 
     function pass() {
         osTurn = osTurn ? false : true;
+        displayTurn();
     }
 
     function checkPatterns() {
@@ -50,11 +65,34 @@
     }
     
     function announceWin() {
-        osTurn ? console.log('O wins') : console.log('X wins');
-        // remove event listener
+        let winner = osTurn ? 'O' : 'X';
+        (winner === 'O') ? ++scoreO : ++scoreX;
+        $announcement.textContent = winner + ' wins!';
+        updateScores();
+        resetBoard();
     }
 
+    function resetBoard() {
+        boardArr = ['', '', '', '', '', '', '', '', ''];
+        osGame = osGame ? false : true;
+        osTurn = osGame;
+    }
 
+    function displayTurn() {
+        if(osTurn) {
+            $playerO.classList.add('myTurn');
+            $playerX.classList.remove('myTurn');
+        } else {
+            $playerO.classList.remove('myTurn');
+            $playerX.classList.add('myTurn');
+        }
+    }
+    displayTurn();
 
-    
+    function updateScores() {
+        $scoreX.textContent = scoreX;
+        $scoreO.textContent = scoreO;
+    }
+    updateScores();
+
 // })()
