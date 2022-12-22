@@ -1,4 +1,4 @@
-// const Gameboard = (() => {
+const Gameboard = (() => {
     let boardArr = ['', '', '', '', '', '', '', '', ''];
     let osGame = false;
     let osTurn = false;
@@ -37,9 +37,10 @@
     }
 
     function putMark(index) {
+        if ($announcement.textContent !== '') $announcement.textContent = ''; // !
         boardArr[index] = osTurn ? 'O' : 'X';
         render();
-        checkPatterns();
+        checkForWin();
     }
 
     function render() {
@@ -53,7 +54,18 @@
         displayTurn();
     }
 
-    function checkPatterns() {
+    function displayTurn() {
+        if(osTurn) {
+            $playerO.classList.add('myTurn');
+            $playerX.classList.remove('myTurn');
+        } else {
+            $playerO.classList.remove('myTurn');
+            $playerX.classList.add('myTurn');
+        }
+    }
+    displayTurn();
+
+    function checkForWin() {
         let extractedRows = [];
         let winningPatterns = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
         
@@ -61,7 +73,7 @@
 
         let winStatus = extractedRows.some(arr => arr[0] !== '' && arr[0] === arr[1] && arr[1] === arr[2]);
 
-        winStatus ? announceWin() : pass();
+        winStatus ? announceWin() : checkForDraw();
     }
     
     function announceWin() {
@@ -76,18 +88,8 @@
         boardArr = ['', '', '', '', '', '', '', '', ''];
         osGame = osGame ? false : true;
         osTurn = osGame;
+        displayTurn();
     }
-
-    function displayTurn() {
-        if(osTurn) {
-            $playerO.classList.add('myTurn');
-            $playerX.classList.remove('myTurn');
-        } else {
-            $playerO.classList.remove('myTurn');
-            $playerX.classList.add('myTurn');
-        }
-    }
-    displayTurn();
 
     function updateScores() {
         $scoreX.textContent = scoreX;
@@ -95,4 +97,13 @@
     }
     updateScores();
 
-// })()
+    function checkForDraw() {
+        let drawStatus = boardArr.every(sq => sq !== '');
+        drawStatus ? announceDraw() : pass();
+    }
+
+    function announceDraw() {
+        $announcement.textContent = 'Draw!';
+        resetBoard();
+    }
+})()
