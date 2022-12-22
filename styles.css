@@ -1,0 +1,39 @@
+body {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.board {
+    background-color: rgb(229, 252, 127);
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    gap: 5px;
+    padding: 5px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.square {
+    color: black;
+    background-color: #ccc;
+    width: 150px;
+    height: 150px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6rem;
+}
+
+.player {
+    background-color: #ccc;
+    height: 3rem;
+    width: 8rem;
+    text-align: center;
+    line-height: 3rem;
+    margin-bottom: 7px;
+}
