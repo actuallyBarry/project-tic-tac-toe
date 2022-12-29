@@ -9,21 +9,46 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <h1 id="announcement"></h1>
-    <div class="player x"><p class="mark">X</p><p class="score"></p></div>
-    <div class="player o"><p class="mark">O</p><p class="score"></p></div>
+    <header>
+        <div class="player" id="x">
+            <svg class="mark" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z">
+            </svg>
+            <p class="score"></p>
+        </div>
+        <div class="player" id="o">
+            <svg class="mark" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z">
+            </svg>
+            <p class="score"></p>
+        </div>
+        <div id="announcement">
+            <p class="para"><svg viewBox="0 0 24 24" style="transform:scale(1.2);">
+                <path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z">
+            </svg>Turn</p>
+            <p class="para"><svg viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z">
+            </svg>Turn</p>
+            <p class="para">Game Over<span></span></p>
+        </div>
+    </header>
 
-    <div class="board">
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-        <div class="square"></div>
-    </div>
-    <button type="button">new game</button>
+    <main>
+        <div class="board">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+        </div>
+        <div id="winnerX"><div class="cross"></div><h2>WINNER!</h2></div>
+        <div id="winnerO"><svg><circle></svg><h2>WINNER!</h2></div>
+        <div id="draw"><h2>DRAW!</h2><div class="cross"></div><svg><circle></svg></div>
+    </main>
+    <button type="button">Reset Scoreboard</button>
 </body>
 </html>
